@@ -165,10 +165,15 @@ class LoginScreen extends StatelessWidget {
                           ));
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20)),
                         backgroundColor: Colors.red,
                         content: Text(
                           'Invalid Credentials',
-                          style: TextStyle(color: Colors.white, fontSize: 25),
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 20,
+                              fontWeight: FontWeight.w600),
                         ),
                       ));
                     }
@@ -205,11 +210,13 @@ class LoginScreen extends StatelessWidget {
                   ),
                   InkWell(
                     onTap: () {
-                      Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => Reg_Screen(),
-                          ));
+                      Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => Reg_Screen(),
+                        ),
+                        (route) => false,
+                      );
                     },
                     child: Text(
                       'Sign Up',
