@@ -10,10 +10,6 @@ class Reg_Screen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //   DynamicLibrary Global;
-    // String regemailcontroller;
-    // String regpasscontroller;
-
     GlobalKey<FormState> _emailkey = GlobalKey<FormState>();
     GlobalKey<FormState> _passkey1 = GlobalKey<FormState>();
     GlobalKey<FormState> _passkey2 = GlobalKey<FormState>();
@@ -21,10 +17,12 @@ class Reg_Screen extends StatelessWidget {
     TextEditingController regpasscontroller1 = TextEditingController();
     TextEditingController passcontroller2 = TextEditingController();
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 60),
+      appBar: AppBar(),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 60),
+        child: SingleChildScrollView(
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               SizedBox(
@@ -59,6 +57,12 @@ class Reg_Screen extends StatelessWidget {
                   ),
                   keyboardType: TextInputType.emailAddress,
                   decoration: InputDecoration(
+                      focusedErrorBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(13),
+                          borderSide: BorderSide(
+                            color: Colors.red,
+                            width: 2,
+                          )),
                       enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(13),
                           borderSide: BorderSide(
@@ -102,6 +106,12 @@ class Reg_Screen extends StatelessWidget {
                   ),
                   obscureText: true,
                   decoration: InputDecoration(
+                      focusedErrorBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(13),
+                          borderSide: BorderSide(
+                            color: Colors.red,
+                            width: 2,
+                          )),
                       enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(13),
                           borderSide: BorderSide(
@@ -147,6 +157,12 @@ class Reg_Screen extends StatelessWidget {
                   ),
                   obscureText: true,
                   decoration: InputDecoration(
+                      focusedErrorBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(13),
+                          borderSide: BorderSide(
+                            color: Colors.red,
+                            width: 2,
+                          )),
                       enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(13),
                           borderSide: BorderSide(
@@ -184,11 +200,22 @@ class Reg_Screen extends StatelessWidget {
                       _passkey2.currentState!.validate()) {
                     storedEmail = regemailcontroller.text;
                     storedPassword = regpasscontroller1.text;
-                    Navigator.push(
+                    Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
                           builder: (context) => LoginScreen(),
                         ));
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        backgroundColor: Colors.red,
+                        shape: ContinuousRectangleBorder(
+                            borderRadius: BorderRadius.circular(20)),
+                        content: Text(
+                          'Invalid Credentials',
+                          style: TextStyle(
+                            color: Colors.white,
+                          ),
+                        )));
                   }
                 },
                 child: Container(
@@ -210,7 +237,7 @@ class Reg_Screen extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                height: 250,
+                height: 130,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,

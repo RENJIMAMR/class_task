@@ -4,8 +4,12 @@ import 'package:class_task/view/registration_screen/registration_screen.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatelessWidget {
-  const LoginScreen({super.key});
-
+  const LoginScreen({
+    super.key,
+  });
+  // this.storedEmail, this.storedPassword});
+  // final String? storedEmail;
+  // final String? storedPassword;
   @override
   Widget build(BuildContext context) {
     GlobalKey<FormState> _emailkey = GlobalKey<FormState>();
@@ -15,20 +19,20 @@ class LoginScreen extends StatelessWidget {
     TextEditingController passcontroller1 = TextEditingController();
 
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 60),
+      appBar: AppBar(),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 60),
+        child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               SizedBox(
                 height: 40,
               ),
-              Center(
-                child: Text(
-                  'Sign  in to Your Account',
-                  style: TextStyle(fontSize: 30, fontWeight: FontWeight.w700),
-                ),
+              Text(
+                'Sign  in to Your Account',
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 30, fontWeight: FontWeight.w700),
               ),
               SizedBox(
                 height: 20,
@@ -64,6 +68,12 @@ class LoginScreen extends StatelessWidget {
                         color: Colors.grey.withOpacity(.8),
                         fontSize: 20,
                       ),
+                      focusedErrorBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(13),
+                          borderSide: BorderSide(
+                            color: Colors.red,
+                            width: 2,
+                          )),
                       errorBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(13),
                           borderSide: BorderSide(
@@ -112,6 +122,12 @@ class LoginScreen extends StatelessWidget {
                         color: Colors.grey.withOpacity(.8),
                         fontSize: 20,
                       ),
+                      focusedErrorBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(13),
+                          borderSide: BorderSide(
+                            color: Colors.red,
+                            width: 2,
+                          )),
                       errorBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(13),
                           borderSide: BorderSide(
@@ -124,21 +140,23 @@ class LoginScreen extends StatelessWidget {
                 height: 10,
               ),
               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Icon(
-                    Icons.check_box_outline_blank_outlined,
-                    color: Colors.black,
-                    size: 30,
-                  ),
-                  Text(
-                    'Remember Me',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 17,
-                    ),
-                  ),
-                  SizedBox(
-                    width: 40,
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.check_box_outline_blank_outlined,
+                        color: Colors.black,
+                        size: 30,
+                      ),
+                      Text(
+                        'Remember Me',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 17,
+                        ),
+                      ),
+                    ],
                   ),
                   Text(
                     'Forgot Password?',
@@ -158,7 +176,7 @@ class LoginScreen extends StatelessWidget {
                       _passkey1.currentState!.validate()) {
                     if (emailcontroller.text == storedEmail &&
                         passcontroller1.text == storedPassword) {
-                      Navigator.push(
+                      Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
                             builder: (context) => HomeScreen(),
@@ -199,10 +217,10 @@ class LoginScreen extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                height: 300,
+                height: 190,
               ),
               Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
                     "Don't have an account?",
